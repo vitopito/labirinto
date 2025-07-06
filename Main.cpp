@@ -16,8 +16,7 @@ int main(){
 		int moveIndex = 2;
 		bool bumpers[4];
 	    float distanciaSonares[3];
-	    //rotaciona para redefinir o angulo 0
-	    //bot->rotate(180);//APENAS PARA PACMAN
+	    
 	    bot->sleepMilliseconds(1300);
 	    while(bot->isConnected()){
 	    	bot->sleepMilliseconds(200);
@@ -25,11 +24,11 @@ int main(){
 			bool bumperEsquerdo = bot->getBumper(0);
 			bool bumperDireito = bot->getBumper(1);
 			
-			if((bumperEsquerdo && bumperDireito) || bumperEsquerdo) {
+			if(bumperEsquerdo || bumperDireito) {
 			    bot->move(-0.5);
 				bot->sleepMilliseconds(1000);
 				bot->neutral();
-				bot->rotate(90);
+				bot->rotate((bumperEsquerdo) ? 90 : -90);
 				bot->sleepMilliseconds(1000);
 				continue;
 			}
