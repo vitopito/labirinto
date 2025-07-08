@@ -8,8 +8,6 @@ int anguloRotacao(int index);
 
 int main(){
     EdubotLib *bot = new EdubotLib();
-
-    const float DIST_SONARES = 40; 
     
     if(bot->connect()){ 
 
@@ -35,8 +33,9 @@ int main(){
 			
 			for(int i = 2; i >= 0; i--) {
 				distanciaSonares[i] = bot->getSonar(i * 3);
-				std::cout << "sonares: " << distanciaSonares[i] << std::endl;
 			}
+
+		    if(distanciaSonares[0] > 200 && distanciaSonares[1] > 200 && distanciaSonares[2] > 200) break; 
 			    
  		  auto it = std::max_element(std::begin(distanciaSonares), std::end(distanciaSonares));
             int moveIndex = std::distance(std::begin(distanciaSonares), it);
@@ -46,11 +45,6 @@ int main(){
             bot->move(0.28);
             bot->sleepMilliseconds((distanciaSonares[moveIndex] / 45) * 1000);
             bot->neutral();
-
-		
-		  std::cout << "index: " << moveIndex << std::endl;
-		  std::cout << "angulo: " << anguloRotacao(moveIndex) << std::endl;
-            std::cout << "tempo dos guri andando: " << (distanciaSonares[moveIndex] / 45) * 1000 << "milligongas" << std::endl;
 	    }
     		 bot->disconnect();
     }
