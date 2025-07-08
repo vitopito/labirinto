@@ -44,13 +44,13 @@ int main(){
             bot->rotate(anguloRotacao(moveIndex));
             bot->sleepMilliseconds(1000);
             bot->move(0.28);
-            bot->sleepMilliseconds((distanciaSonares[moveIndex] / 0.45) * 1000);
+            bot->sleepMilliseconds((distanciaSonares[moveIndex] / 45) * 1000);
             bot->neutral();
 
 		
 		  std::cout << "index: " << moveIndex << std::endl;
 		  std::cout << "angulo: " << anguloRotacao(moveIndex) << std::endl;
-            std::cout << "tempo dos guri andando: " << (distanciaSonares[moveIndex] / 0.45) * 1000 << "milligongas" << std::endl;
+            std::cout << "tempo dos guri andando: " << (distanciaSonares[moveIndex] / 45) * 1000 << "milligongas" << std::endl;
 	    }
     		 bot->disconnect();
     }
